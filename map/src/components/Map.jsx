@@ -12,14 +12,39 @@ const Map = () => {
     };
 
     const map = new kakao.maps.Map(container, options);
+
+    const markers = [];
+
+    function addMarker(position) {
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({
+        position: position,
+      });
+
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+
+      // 생성된 마커를 배열에 추가합니다
+      markers.push(marker);
+    }
+
+    kakao.maps.event.addListener(map, "click", function (mouseEvent) {
+      // 클릭한 위도, 경도 정보를 가져옵니다
+      var latlng = mouseEvent.latLng;
+
+      var message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
+      message += "경도는 " + latlng.getLng() + " 입니다";
+      addMarker(latlng);
+      console.log(latlng, message);
+    });
   }, []);
   return (
     <div>
       <div
         id="map"
         style={{
-          width: "500px",
-          height: "500px",
+          width: "1000px",
+          height: "1000px",
         }}
       ></div>
     </div>
