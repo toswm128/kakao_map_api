@@ -15,10 +15,17 @@ const Map = () => {
 
     const markers = [];
 
+    const markerImage = new kakao.maps.MarkerImage(
+      "https://i.ytimg.com/vi/eQjHl_PBobE/maxresdefault.jpg",
+      new kakao.maps.Size(64, 69),
+      { offset: new kakao.maps.Point(27, 69) }
+    );
+
     function addMarker(position) {
       // 마커를 생성합니다
       var marker = new kakao.maps.Marker({
         position: position,
+        image: markerImage,
       });
 
       // 마커가 지도 위에 표시되도록 설정합니다
