@@ -26,8 +26,12 @@ const Map = () => {
 
       // 생성된 마커를 배열에 추가합니다
       markers.push(marker);
+      // 마커에 마우스오버 이벤트를 등록합니다
+      kakao.maps.event.addListener(marker, "click", function () {
+        // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+        console.log(markers);
+      });
     }
-
     kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       // 클릭한 위도, 경도 정보를 가져옵니다
       var latlng = mouseEvent.latLng;
